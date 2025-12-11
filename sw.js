@@ -1,11 +1,10 @@
 const CACHE_NAME = 'fuelkl-shell-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/prices.json'
+  'index.html',
+  'manifest.json',
+  'icons/icon-192.png',
+  'icons/icon-512.png',
+  'prices.json'
 ];
 
 self.addEventListener('install', event => {
@@ -22,8 +21,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // network-first for API data
-  if (url.pathname === '/prices.json') {
+  // network-first for prices.json (works even when served under /your-repo/)
+  if (url.pathname.endsWith('/prices.json') || url.pathname === 'prices.json' || url.pathname.endsWith('prices.json')) {
     event.respondWith(
       fetch(event.request)
         .then(resp => {
@@ -36,7 +35,6 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // cache-first for everything else
   event.respondWith(
     caches.match(event.request).then(cached => cached || fetch(event.request))
   );

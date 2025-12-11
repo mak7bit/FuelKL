@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#00695c" />
-  <link rel="manifest" href="/manifest.json" />
+  <link rel="manifest" href="manifest.json" />
   <title>Kerala Fuel Prices</title>
   <style>
     body{font-family:system-ui,Arial;max-width:520px;margin:40px auto;padding:16px}
@@ -27,8 +27,8 @@
   </div>
 
   <script>
-    // Now using local prices.json
-    const API = '/prices.json';
+    // Use relative path so it works from project pages and local server
+    const API = 'prices.json';
 
     const $petrol = document.getElementById('petrol');
     const $diesel = document.getElementById('diesel');
@@ -62,8 +62,9 @@
 
     $refresh.addEventListener('click', loadPrices);
 
+    // register service worker relative to this file so scope is correct
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(err => console.warn('SW reg failed', err));
+      navigator.serviceWorker.register('sw.js').catch(err => console.warn('SW reg failed', err));
     }
 
     loadPrices();
