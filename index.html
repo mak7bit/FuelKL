@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b3c2f" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-512.png">
-<link rel="apple-touch-icon" href="icons/icon-512.png">
+  <link rel="apple-touch-icon" href="icons/icon-512.png">
   <title>Kerala Fuel Prices</title>
 
   <style>
@@ -17,7 +17,6 @@
       --muted: #98a3a3;
       --accent: #06a37a;
       --glass: rgba(255,255,255,0.03);
-      --danger: #e05555;
       --radius: 14px;
     }
     html,body{height:100%}
@@ -48,17 +47,10 @@
       border:1px solid rgba(255,255,255,0.02);
       background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
     }
-    header h1{
-      margin:0;font-size:1.15rem;font-weight:600;
-      letter-spacing: -0.2px;
-    }
+    header h1{margin:0;font-size:1.15rem;font-weight:600;letter-spacing:-0.2px}
     header p{margin:0;color:var(--muted);font-size:.86rem}
 
-    .wrap{
-      width:100%;
-      max-width:720px;
-    }
-
+    .wrap{width:100%;max-width:720px}
     .card{
       background: linear-gradient(180deg,var(--card), rgba(8,23,23,0.9));
       border-radius:var(--radius);
@@ -77,14 +69,7 @@
       outline:none;
     }
 
-    .prices{
-      display:flex;
-      gap:18px;
-      margin-top:16px;
-      align-items:flex-end;
-      flex-wrap:wrap;
-    }
-
+    .prices{display:flex;gap:18px;margin-top:16px;align-items:flex-end;flex-wrap:wrap}
     .tile{
       background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
       padding:14px 16px;border-radius:12px;min-width:170px;
@@ -98,44 +83,26 @@
     .muted{color:var(--muted);font-size:.92rem;margin-top:12px}
 
     button{
-      margin-top:14px;
-      background: linear-gradient(180deg,var(--accent), #048b67);
+      margin-top:14px;background: linear-gradient(180deg,var(--accent), #048b67);
       border:none;color:white;padding:10px 14px;border-radius:10px;
-      cursor:pointer;font-weight:600;font-size:0.98rem;
-      box-shadow: 0 6px 18px rgba(6,163,122,0.14);
+      cursor:pointer;font-weight:600;font-size:0.98rem;box-shadow: 0 6px 18px rgba(6,163,122,0.14);
     }
 
     /* shimmer loader */
-    .shimmer {
-      position:relative;
-      overflow:hidden;
-      background:linear-gradient(90deg,#0b2a25 0%, #0c3b33 50%, #0b2a25 100%);
-    }
-    .shimmer::after{
-      content:"";position:absolute;inset:0;
-      transform:translateX(-100%);
-      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
-      animation: shine 1.2s infinite;
-    }
+    .shimmer { position:relative; overflow:hidden; background:linear-gradient(90deg,#0b2a25 0%, #0c3b33 50%, #0b2a25 100%); }
+    .shimmer::after{ content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);animation: shine 1.2s infinite;}
     @keyframes shine{ to { transform: translateX(100%); } }
 
-    .note{font-size:.86rem;color:var(--muted);margin-top:12px}
-
-    /* responsive */
-    @media (max-width:520px){
-      .prices{flex-direction:column}
-      .tile{min-width:100%}
-    }
+    @media (max-width:520px){ .prices{flex-direction:column} .tile{min-width:100%} }
   </style>
 </head>
 <body>
-
   <div class="wrap">
     <header>
       <img src="icons/icon-512.png" alt="logo" />
       <div>
         <h1>Kerala Fuel Prices</h1>
-        <p>Prices updates daily at 7AM IST</p>
+        <p>Prices update daily at 07:00 IST</p>
       </div>
     </header>
 
@@ -144,13 +111,20 @@
         <div>
           <label for="district">District</label><br />
           <select id="district" aria-label="Select district">
-            <!-- default Palakkad first -->
-            <option value="palakkad" selected>Palakkad</option>
-            <option value="thrissur">Thrissur</option>
-            <option value="ernakulam">Ernakulam</option>
-            <option value="thiruvananthapuram">Thiruvananthapuram</option>
+            <option value="alappuzha">Alappuzha</option>
+            <option value="kakkanad">Kakkanad</option>
+            <option value="kalpetta">Kalpetta</option>
+            <option value="kannur">Kannur</option>
+            <option value="kasaragod">Kasaragod</option>
             <option value="kollam">Kollam</option>
-            <!-- add more if you later provide district JSONs -->
+            <option value="kottayam">Kottayam</option>
+            <option value="kozhikode">Kozhikode</option>
+            <option value="malappuram">Malappuram</option>
+            <option value="palakkad" selected>Palakkad</option>
+            <option value="pandakkal">Pandakkal</option>
+            <option value="pathanamthitta">Pathanamthitta</option>
+            <option value="thrissur">Thrissur</option>
+            <option value="trivandrum">Trivandrum</option>
           </select>
         </div>
 
@@ -178,28 +152,40 @@
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <button id="refresh">Refresh</button>
       </div>
-
     </div>
   </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // === config ===
+  const FALLBACK = {
+    alappuzha: "kollam",
+    kakkanad: "thrissur",
+    kalpetta: "palakkad",
+    kannur: "kollam",
+    kasaragod: "palakkad",
+    kollam: "kollam",
+    kottayam: "kollam",
+    kozhikode: "palakkad",
+    malappuram: "palakkad",
+    palakkad: "palakkad",
+    pandakkal: "thrissur",
+    pathanamthitta: "kollam",
+    thrissur: "thrissur",
+    trivandrum: "kollam"
+  };
+
   // Utilities
-  function pricesUrl() {
-    // fetch canonical prices.json (no district in filename) but cache-bust
-    return 'prices.json?t=' + Date.now();
-  }
+  function pricesUrl(){ return 'prices.json?t=' + Date.now(); }
 
   function toIST(isoString){
     try{
       const d = new Date(isoString);
-      // display in India timezone explicitly
       return d.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', hour12: true });
-    }catch(e){
-      return isoString;
-    }
+    }catch(e){ return isoString; }
   }
 
-  // render helpers
+  // shimmer helpers
   function showShimmer(){
     document.getElementById('petrol').classList.add('shimmer');
     document.getElementById('diesel').classList.add('shimmer');
@@ -214,94 +200,116 @@
     document.getElementById('pricesArea').removeAttribute('aria-hidden');
   }
 
-  // read data shape and extract for district
-  function extractForDistrict(data, districtKey){
-    // if data has top-level petrol/diesel -> return it
+  // Extractor: accepts flat or per-district shape
+  function extractForDistrict(data, slug){
+    // flat object
     if (data && typeof data.petrol === 'number' && typeof data.diesel === 'number') {
       return { petrol: data.petrol, diesel: data.diesel, updated_at: data.updated_at || new Date().toISOString() };
     }
-    // try case-insensitive district lookup
-    const lk = districtKey.toLowerCase();
+    // per-district object (case-insensitive)
     if (data && typeof data === 'object') {
-      // accept keys like "palakkad", "Palakkad"
-      for (const k of Object.keys(data)) {
-        if (k.toLowerCase() === lk) {
+      const lk = slug.toLowerCase();
+      for (const k of Object.keys(data)){
+        if (k.toLowerCase() === lk){
           const item = data[k];
-          if (item && (item.petrol || item.diesel)) return { petrol: Number(item.petrol), diesel: Number(item.diesel), updated_at: item.updated_at || new Date().toISOString() };
+          if (item && (item.petrol !== undefined || item.diesel !== undefined)) {
+            return { petrol: Number(item.petrol), diesel: Number(item.diesel), updated_at: item.updated_at || new Date().toISOString() };
+          }
         }
       }
     }
     return null;
   }
 
-  async function loadPricesFor(selectedDistrict){
+  // load and render
+  async function loadPricesFor(slug){
     showShimmer();
     try{
       const res = await fetch(pricesUrl(), { cache: 'no-store', credentials: 'same-origin' });
       if (!res.ok) throw new Error('network error: ' + res.status);
       const data = await res.json();
 
-      const item = extractForDistrict(data, selectedDistrict);
-      if (!item) {
-        // fallback: maybe file has numbers in flat form
-        document.getElementById('status').textContent = 'No data for ' + selectedDistrict + ' (showing cached if available)';
+      // if requested slug missing, try direct slug, then fallback
+      let item = extractForDistrict(data, slug);
+      if (!item){
+        const fb = FALLBACK[slug] || 'palakkad';
+        item = extractForDistrict(data, fb);
+        if (item) slug = fb;
+      }
+
+      if (!item){
+        document.getElementById('status').textContent = 'No data for ' + slug + ' (showing cached if available)';
         const cached = localStorage.getItem('prices_v1');
         if (cached){
-          render(JSON.parse(cached), selectedDistrict, true);
-        } else {
-          renderMissing(selectedDistrict);
+          const parsed = JSON.parse(cached);
+          const cachedItem = extractForDistrict(parsed, slug);
+          if (cachedItem) { render(cachedItem, slug, true); return; }
         }
+        renderMissing(slug);
         return;
       }
 
-      localStorage.setItem('prices_v1', JSON.stringify(data)); // store raw for fallback
-      render(item, selectedDistrict, false);
+      // save raw for fallback
+      localStorage.setItem('prices_v1', JSON.stringify(data));
+      render(item, slug, false);
     }catch(err){
-      // network error -> use cache if available
       const cached = localStorage.getItem('prices_v1');
       if (cached){
         const parsed = JSON.parse(cached);
-        const item = extractForDistrict(parsed, selectedDistrict);
-        if (item) {
-          render(item, selectedDistrict, true);
-          return;
-        }
+        const cachedItem = extractForDistrict(parsed, slug);
+        if (cachedItem) { render(cachedItem, slug, true); return; }
       }
-      renderMissing(selectedDistrict, err);
+      renderMissing(slug, err);
     }
   }
 
-  function render(item, district, fromCache){
+  function render(item, slug, fromCache){
     hideShimmer();
     document.getElementById('petrol').textContent = '₹' + Number(item.petrol).toFixed(2);
     document.getElementById('diesel').textContent = '₹' + Number(item.diesel).toFixed(2);
-    document.getElementById('petrol-sub').textContent = district.charAt(0).toUpperCase() + district.slice(1);
-    document.getElementById('diesel-sub').textContent = district.charAt(0).toUpperCase() + district.slice(1);
+    const label = slug.charAt(0).toUpperCase() + slug.slice(1);
+    document.getElementById('petrol-sub').textContent = label;
+    document.getElementById('diesel-sub').textContent = label;
     document.getElementById('updatedText').textContent = 'Last update: ' + toIST(item.updated_at) + (fromCache ? ' (cached)' : '');
     document.getElementById('status').textContent = fromCache ? 'Showing cached data' : 'Latest';
   }
 
-  function renderMissing(district, err){
+  function renderMissing(slug, err){
     hideShimmer();
     document.getElementById('petrol').textContent = '—';
     document.getElementById('diesel').textContent = '—';
     document.getElementById('petrol-sub').textContent = '';
     document.getElementById('diesel-sub').textContent = '';
-    document.getElementById('updatedText').textContent = 'No data for ' + district;
+    document.getElementById('updatedText').textContent = 'No data for ' + slug;
     document.getElementById('status').textContent = err ? String(err) : 'No data';
   }
 
-  // init
+  // --- district control wiring ---
   const sel = document.getElementById('district');
-  async function refresh(){
-    const d = sel.value || 'palakkad';
-    await loadPricesFor(d);
+  function chosenSlug(){ return sel && sel.value ? sel.value.toLowerCase() : 'palakkad'; }
+  function resolveSlug(slug){
+    if (!slug) return 'palakkad';
+    try {
+      const raw = localStorage.getItem('prices_v1');
+      if (raw){
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed[slug] && parsed[slug].petrol !== undefined) return slug;
+      }
+    } catch(e){}
+    return FALLBACK[slug] || 'palakkad';
   }
-  document.getElementById('refresh').addEventListener('click', refresh);
-  sel.addEventListener('change', refresh);
 
-  // register SW & force update check
-  if ('serviceWorker' in navigator) {
+  async function refresh(){
+    const requested = chosenSlug();
+    const safe = resolveSlug(requested);
+    await loadPricesFor(safe);
+  }
+
+  sel.addEventListener('change', refresh);
+  document.getElementById('refresh').addEventListener('click', refresh);
+
+  // register service worker and ask it to check for updates
+  if ('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').then(reg=>{
       if (reg && reg.update) reg.update();
     }).catch(()=>{/* ignore */});
@@ -309,6 +317,7 @@
 
   // initial load
   refresh();
+});
 </script>
 
 </body>
