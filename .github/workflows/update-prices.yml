@@ -1,0 +1,42 @@
+name: daily-update-prices
+
+on:
+  schedule:
+    # 01:30 UTC => 07:00 IST
+    - cron: '30 1 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Run updater
+        env:
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+          SOURCE_URL: ${{ secrets.SOURCE_URL }}
+        run: |
+          node scripts/local_update.js
+
+      - name: Commit and push prices.json if changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git status --porcelain | grep -q "prices.json"; then
+            git add prices.json
+            git commit -m "daily: update prices.json (GitHub Actions)"
+            git push origin HEAD:main
+          else
+            echo "No change in prices.json"
+          fi
