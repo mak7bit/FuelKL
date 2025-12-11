@@ -20,11 +20,12 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const url = event.request.url;
 
-  // Network-first strategy for prices.json
+  // Network-first for any prices.json request
   if (url.includes("prices.json")) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
+          // update canonical cached copy for offline fallback
           const cloned = response.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put("prices.json", cloned);
@@ -36,10 +37,8 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Cache-first for static files
+  // Cache-first for everything else (app shell)
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      return cached || fetch(event.request);
-    })
+    caches.match(event.request).then((cached) => cached || fetch(event.request))
   );
 });
