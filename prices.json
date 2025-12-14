@@ -2,71 +2,71 @@
   "alappuzha": {
     "petrol": 105.94,
     "diesel": 94.91,
-    "updated_at": "2025-12-13T05:59:41.117Z"
+    "updated_at": "2025-12-14T03:15:53.374Z"
   },
   "kakkanad": {
     "petrol": 105.47,
     "diesel": 94.47,
-    "updated_at": "2025-12-13T05:59:42.016Z"
+    "updated_at": "2025-12-14T03:15:54.571Z"
   },
   "kalpetta": {
     "petrol": 106.67,
     "diesel": 95.55,
-    "updated_at": "2025-12-13T05:59:42.933Z"
+    "updated_at": "2025-12-14T03:15:55.601Z"
   },
   "kannur": {
     "petrol": 105.76,
     "diesel": 94.76,
-    "updated_at": "2025-12-13T05:59:43.753Z"
+    "updated_at": "2025-12-14T03:15:56.701Z"
   },
   "kasaragod": {
     "petrol": 106.7,
     "diesel": 95.65,
-    "updated_at": "2025-12-13T05:59:44.599Z"
+    "updated_at": "2025-12-14T03:15:57.095Z"
   },
   "kollam": {
     "petrol": 106.9,
     "diesel": 95.81,
-    "updated_at": "2025-12-13T05:59:44.956Z"
+    "updated_at": "2025-12-14T03:15:57.671Z"
   },
   "kottayam": {
     "petrol": 105.97,
     "diesel": 94.94,
-    "updated_at": "2025-12-13T05:59:45.775Z"
+    "updated_at": "2025-12-14T03:15:58.755Z"
   },
   "kozhikode": {
     "petrol": 105.76,
     "diesel": 94.76,
-    "updated_at": "2025-12-13T05:59:46.620Z"
+    "updated_at": "2025-12-14T03:15:59.936Z"
   },
   "malappuram": {
     "petrol": 106.24,
     "diesel": 95.22,
-    "updated_at": "2025-12-13T05:59:46.916Z"
+    "updated_at": "2025-12-14T03:16:00.365Z"
   },
   "palakkad": {
     "petrol": 106.76,
     "diesel": 95.68,
-    "updated_at": "2025-12-13T05:59:47.293Z"
+    "updated_at": "2025-12-14T03:16:00.738Z"
   },
   "pandakkal": {
     "petrol": 93.92,
     "diesel": 83.9,
-    "updated_at": "2025-12-13T05:59:47.979Z"
+    "updated_at": "2025-12-14T03:16:01.654Z"
   },
   "pathanamthitta": {
     "petrol": 106.56,
     "diesel": 95.49,
-    "updated_at": "2025-12-13T05:59:48.792Z"
+    "updated_at": "2025-12-14T03:16:02.071Z"
   },
   "thrissur": {
     "petrol": 106.11,
     "diesel": 95.07,
-    "updated_at": "2025-12-13T05:59:49.074Z"
+    "updated_at": "2025-12-14T03:16:02.465Z"
   },
   "trivandrum": {
     "petrol": 107.47,
     "diesel": 96.47,
-    "updated_at": "2025-12-13T05:59:49.945Z"
+    "updated_at": "2025-12-14T03:16:03.504Z"
   }
 }
