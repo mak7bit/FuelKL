@@ -2,56 +2,11 @@
   "alappuzha": {
     "petrol": 105.94,
     "diesel": 94.91,
-    "updated_at": "2025-12-28T03:24:36.932Z"
+    "updated_at": "2025-12-29T05:51:57.148Z"
   },
   "kakkanad": {
     "petrol": 105.47,
     "diesel": 94.47,
-    "updated_at": "2025-12-28T03:24:37.784Z"
-  },
-  "kalpetta": {
-    "petrol": 106.67,
-    "diesel": 95.55,
-    "updated_at": "2025-12-28T03:24:38.452Z"
-  },
-  "kannur": {
-    "petrol": 105.76,
-    "diesel": 94.76,
-    "updated_at": "2025-12-28T03:24:38.772Z"
-  },
-  "kasaragod": {
-    "petrol": 106.7,
-    "diesel": 95.65,
-    "updated_at": "2025-12-28T03:24:39.686Z"
-  },
-  "kollam": {
-    "petrol": 106.9,
-    "diesel": 95.81,
-    "updated_at": "2025-12-28T03:24:39.974Z"
-  },
-  "kottayam": {
-    "petrol": 105.97,
-    "diesel": 94.94,
-    "updated_at": "2025-12-28T03:24:40.815Z"
-  },
-  "kozhikode": {
-    "petrol": 105.76,
-    "diesel": 94.76,
-    "updated_at": "2025-12-28T03:24:41.655Z"
-  },
-  "malappuram": {
-    "petrol": 106.24,
-    "diesel": 95.22,
-    "updated_at": "2025-12-28T03:24:42.561Z"
-  },
-  "palakkad": {
-    "petrol": 106.76,
-    "diesel": 95.68,
-    "updated_at": "2025-12-28T03:24:42.852Z"
-  },
-  "pandakkal": {
-    "petrol": 93.92,
-    "diesel": 83.9,
-    "updated_at": "2025-12-28T03:24:43.488Z"
+    "updated_at": "2025-12-29T05:51:58.542Z"
   }
 }
